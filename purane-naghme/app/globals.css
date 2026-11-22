@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette — pulled from the dusk sky, brass storage jars and terracotta
+     walls of the reference scene. Warm, sun-worn, nothing digital-neon. */
+  --color-dusk-950: #0a0f1a;
+  --color-dusk-900: #0d1826;
+  --color-dusk-800: #16233a;
+  --color-brass-400: #e8b25c;
+  --color-brass-500: #e3a73c;
+  --color-brass-600: #c98a2c;
+  --color-terracotta-500: #b5623a;
+  --color-ivory-100: #faf5ea;
+  --color-ivory-300: #ece1cc;
+
+  --font-display: "Baloo 2", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-glass:
+    0 16px 48px -12px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  --animate-spin-slow: spin 8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-dusk-950);
+  color: var(--color-ivory-100);
+}
+
+/* ---------- Hero background ---------- */
+.hero-bg {
+  background-image: url("/bg/scene-wide.png");
+}
+
+@media (orientation: portrait) {
+  .hero-bg {
+    background-image: url("/bg/scene-tall.png");
+  }
+}
+
+/* ---------- Film grain overlay ---------- */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ---------- Vinyl spindle ring ---------- */
+.spindle {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Tabular numerals for timestamps ---------- */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Seek bar ---------- */
+.seek-rail {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.seek-fill {
+  background: var(--color-brass-500);
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--color-brass-500) 70%, transparent);
+}
+
+.seek-knob {
+  background: var(--color-ivory-100);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brass-500) 55%, transparent);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow {
+    animation: none;
+  }
+}
